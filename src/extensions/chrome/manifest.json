@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "js": ["filterdin.js"],
-      "matches": ["*://*.linkedin.com/*"]
+      "matches": ["*://*.linkedin.com/feed/*"]
     }
   ]
 }
