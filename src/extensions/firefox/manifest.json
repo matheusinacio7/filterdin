@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "FilterdIn",
+  "version": "1.0",
+  "description": "Allows you to filter your LinkedIn feed based on text content",
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.linkedin.com/feed*"],
+      "js": ["filterdin.js"]
+    }
+  ]
+}
+
