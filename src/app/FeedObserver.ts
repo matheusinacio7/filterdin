@@ -1,7 +1,5 @@
 export const FEED_SELECTOR = '.scaffold-finite-scroll__content';
 export class FeedObserver extends MutationObserver {
-  private feedNode: Element | undefined | null;
-
   constructor(callback: (newNode: Node) => void) {
     super(function (mutations: MutationRecord[]) {
       mutations.forEach((m) => {
@@ -12,18 +10,26 @@ export class FeedObserver extends MutationObserver {
         });
       });
     });
-    document.addEventListener('load', this.setFeedNode.bind(this));
-  }
-
-  private setFeedNode() {
-    this.feedNode = document.querySelector(FEED_SELECTOR);
   }
 
   observe(): void {
-    if (!this.feedNode) {
-      throw new Error('Could not locate linkedin Feed');
-    }
+    let tempObserver: MutationObserver;
+    
+    tempObserver = new MutationObserver((mutations: MutationRecord[]) => {
+      mutations.forEach((m) => {
+        m.addedNodes.forEach((n) => {
+          if (n.nodeType !== Node.ELEMENT_NODE) {
+            return;
+          }
 
-    super.observe(this.feedNode, { childList: true });
+          if ((n as Element).classList.contains(FEED_SELECTOR)) {
+            super.observe(n, { childList: true, attributes: true });
+            tempObserver.disconnect();
+          }
+        });
+      });
+    });
+
+    tempObserver.observe(document.body, { childList: true, attributes: true, subtree: true });
   }
 }
