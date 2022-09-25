@@ -4,10 +4,15 @@ import { Popup } from "../../app/popup";
 
 const applyRedBorder = (node: Node) => {
   (node as HTMLElement).style.border = '5px solid red';
-  console.log(node);
+  console.log('applyredborder', node);
+};
+
+const removeRedBorder = (node: Node) => {
+  (node as HTMLElement).style.border = '';
+  console.log('removeredborder', node);
 }
 
-let feedObserver: FeedObserver;
+let feedObserver: FeedObserver | null | undefined;
 
 chrome.storage.sync.get(['filters'], ({ filters }) => {
   if (filters) {
@@ -24,11 +29,16 @@ chrome.runtime.onMessage.addListener((message: any) => {
 });
 
 function regenerateFeedObserver(filters: Array<string>) {
-  const matcher = new RegExp(filters.join('|'), 'i');
+  const matcher = new RegExp(`\\b(${filters.join('|')})\\b`, 'i');
   const matchesAnyFilter = matchesText(matcher);
   if (feedObserver) {
     feedObserver.cleanup();
   }
-  feedObserver = new FeedObserver(applyRedBorder, matchesAnyFilter);
-  feedObserver.observe();
+
+  if (filters.length) {
+    feedObserver = new FeedObserver(applyRedBorder, matchesAnyFilter, removeRedBorder);
+    feedObserver.observe();
+  } else {
+    feedObserver = null;
+  }
 }

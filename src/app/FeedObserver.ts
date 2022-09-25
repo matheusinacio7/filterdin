@@ -5,12 +5,15 @@ export class FeedObserver {
   static garbageCollectorInterval: ReturnType<typeof setInterval> | null = null;
   static readonly observerMap: Map<string, MutationObserver> = new Map();
   private readonly mutationObserver;
+  private readonly affectedNodes: Array<Node>;
 
   constructor(
     private readonly callback: (node: Node) => void,
     private readonly conditional: (node: Node) => boolean,
+    private readonly reverseCallback?: (node: Node) => void,
   ) {
     this.mutationObserver = new MutationObserver(this.handleMutations.bind(this));
+    this.affectedNodes = [];
   }
 
   observe(): void {
@@ -49,7 +52,10 @@ export class FeedObserver {
     FeedObserver.observerMap.forEach((observer, key) => {
       observer.disconnect();
       FeedObserver.observerMap.delete(key)
-    })
+    });
+    if (this.reverseCallback) {
+      this.affectedNodes.forEach(this.reverseCallback);
+    }
   }
 
   private handleMutations(mutations: MutationRecord[]): void {
@@ -67,6 +73,7 @@ export class FeedObserver {
 
     if (textContainer && this.conditional(textContainer)) {
       this.callback(feedItem);
+      this.affectedNodes.push(feedItem as HTMLElement);
       return;
     }
 
@@ -82,6 +89,7 @@ export class FeedObserver {
 
           if (isTextContainer && this.conditional(childNode)) {
             this.callback(feedItem);
+            this.affectedNodes.push(feedItem);
             tmpObserver.disconnect();
             FeedObserver.observerMap.delete(observerId);
           }

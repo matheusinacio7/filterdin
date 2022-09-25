@@ -23,7 +23,6 @@ export class Popup {
   }
 
   private handleAddFilter(event: SubmitEvent) {
-    console.log('add');
     event.preventDefault();
     const filterText = this.filterToAddField.value;
     this.filters.push(filterText);
@@ -71,6 +70,7 @@ export class Popup {
   private deleteFilter(filterElement: HTMLLIElement) {
     const filterString = filterElement.dataset.value as string;
     this.filters.splice(this.filters.indexOf(filterString), 1);
+    filterElement.parentElement?.removeChild(filterElement);
     this.listeners[Popup.PopupEvent.FilterDeleted].forEach((listener) => {
       listener(filterString, this.filters);
     });
