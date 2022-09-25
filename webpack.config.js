@@ -4,11 +4,11 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    main: './src/app/main.ts',
+    main: { import: './src/extensions/chrome/main.ts', filename: 'filterdin.js' },
+    popup: { import: './src/app/popup.ts', filename: 'popup.js' },
   },
   output: {
     path: path.resolve(__dirname, 'dist', 'chrome'),
-    filename: 'filterdin.js',
   },
   resolve: {
     extensions: ['.ts'],
