@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: {
     main: { import: './src/extensions/chrome/main.ts', filename: 'filterdin.js' },
-    popup: { import: './src/app/popup.ts', filename: 'popup.js' },
+    popup: { import: './src/extensions/chrome/popup.ts', filename: 'popup.js' },
   },
   output: {
     path: path.resolve(__dirname, 'dist', 'chrome'),
