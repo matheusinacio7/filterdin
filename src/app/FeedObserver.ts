@@ -20,7 +20,6 @@ export class FeedObserver {
     this.setupGarbageCollector;
     let feedNode = document.querySelector(`.${FEED_CLASS}`);
     if (feedNode) {
-      console.log("Encontrado node de feed");
       feedNode.childNodes.forEach(this.handleFeedItemNode.bind(this));
       this.mutationObserver.observe(feedNode, { childList: true });
       return;
@@ -34,7 +33,6 @@ export class FeedObserver {
           }
 
           if ((n as Element).classList.contains(FEED_CLASS)) {
-            console.log("Encontrado node de feed");
             feedNode = n as Element;
             feedNode.childNodes.forEach(this.handleFeedItemNode.bind(this));
             this.mutationObserver.observe(feedNode, { childList: true })

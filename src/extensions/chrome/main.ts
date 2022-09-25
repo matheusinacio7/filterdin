@@ -21,7 +21,6 @@ chrome.storage.sync.get(['filters'], ({ filters }) => {
 });
 
 chrome.runtime.onMessage.addListener((message: any) => {
-  console.log(message);
   if (message.type === Popup.PopupEvent.FilterAdded || message.type === Popup.PopupEvent.FilterDeleted) {
     chrome.storage.sync.set({ filters: message.filters.join(',') });
     regenerateFeedObserver(message.filters);
