@@ -1,15 +1,5 @@
-import { matchesText } from "./matchesText";
-import { removeNode } from "./removeNode";
-
-export const FEED_CLASS = 'scaffold-finite-scroll__content';
-
-const matcher = new RegExp('developer|program', 'i');
-const matchesSomeCommonWords = matchesText(matcher);
-
-const applyRedBorder = (node: Node) => {
-  (node as HTMLElement).style.border = '5px solid red';
-  console.log(node);
-}
+const FEED_CLASS = 'scaffold-finite-scroll__content';
+const FEED_ITEM_TEXT_CONTAINER_CLASS = 'update-components-text';
 
 export class FeedObserver {
   static garbageCollectorInterval: ReturnType<typeof setInterval> | null = null;
@@ -23,44 +13,17 @@ export class FeedObserver {
     this.mutationObserver = new MutationObserver(this.handleMutations.bind(this));
   }
 
-  private handleMutations(mutations: MutationRecord[]): void {
-    mutations.forEach((m) => {
-      m.addedNodes.forEach((node) => {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          if (matchesSomeCommonWords(node)) {
-            applyRedBorder(node);
-            return;
-          }
-          const observerId = self.crypto.randomUUID();
-          const tmpObserver = new MutationObserver((mutations: MutationRecord[]) => {
-            mutations.forEach((m) => {
-              m.addedNodes.forEach((n) => {
-                if ((n as HTMLElement).classList?.contains('update-components-text') && matchesSomeCommonWords(n)) {
-                  applyRedBorder(node);
-                  tmpObserver.disconnect();
-                  FeedObserver.observerMap.delete(observerId);
-                }
-              });
-            });
-          });
-          FeedObserver.observerMap.set(observerId, tmpObserver);
-          tmpObserver.observe(node, { childList: true, subtree: true });
-        }
-      });
-    });
-  }
-
   observe(): void {
     this.setupGarbageCollector;
-    let tempObserver: MutationObserver;
     let feedNode = document.querySelector(`.${FEED_CLASS}`);
     if (feedNode) {
-      this.mutationObserver.observe(feedNode, { childList: true });
       console.log("Encontrado node de feed");
+      feedNode.childNodes.forEach(this.handleFeedItemNode.bind(this));
+      this.mutationObserver.observe(feedNode, { childList: true });
       return;
     }
     
-    tempObserver = new MutationObserver((mutations: MutationRecord[]) => {
+    const tempObserver = new MutationObserver((mutations: MutationRecord[]) => {
       mutations.forEach((m) => {
         m.addedNodes.forEach((n) => {
           if (n.nodeType !== Node.ELEMENT_NODE) {
@@ -70,6 +33,7 @@ export class FeedObserver {
           if ((n as Element).classList.contains(FEED_CLASS)) {
             console.log("Encontrado node de feed");
             feedNode = n as Element;
+            feedNode.childNodes.forEach(this.handleFeedItemNode.bind(this));
             this.mutationObserver.observe(feedNode, { childList: true })
             tempObserver.disconnect();
           }
@@ -78,6 +42,55 @@ export class FeedObserver {
     });
 
     tempObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
+  cleanup() {
+    this.mutationObserver.disconnect();
+    FeedObserver.observerMap.forEach((observer, key) => {
+      observer.disconnect();
+      FeedObserver.observerMap.delete(key)
+    })
+  }
+
+  private handleMutations(mutations: MutationRecord[]): void {
+    mutations.forEach((m) => {
+      m.addedNodes.forEach(this.handleFeedItemNode.bind(this));
+    });
+  }
+
+  private handleFeedItemNode(feedItem: Node) {
+    if (feedItem.nodeType !== Node.ELEMENT_NODE) {
+      return;
+    }
+
+    const textContainer = (feedItem as HTMLElement).querySelector(`.${FEED_ITEM_TEXT_CONTAINER_CLASS}`);
+
+    if (textContainer && this.conditional(textContainer)) {
+      this.callback(feedItem);
+      return;
+    }
+
+    this.handleFeedItemChildrenMutations(feedItem as HTMLElement);
+  }
+
+  private handleFeedItemChildrenMutations(feedItem: HTMLElement) {
+    const observerId = self.crypto.randomUUID();
+    const tmpObserver = new MutationObserver((mutations: MutationRecord[]) => {
+      mutations.forEach((m) => {
+        m.addedNodes.forEach((childNode) => {
+          const isTextContainer = (childNode as HTMLElement).classList?.contains(FEED_ITEM_TEXT_CONTAINER_CLASS);
+
+          if (isTextContainer && this.conditional(childNode)) {
+            this.callback(feedItem);
+            tmpObserver.disconnect();
+            FeedObserver.observerMap.delete(observerId);
+          }
+        });
+      });
+    });
+
+    FeedObserver.observerMap.set(observerId, tmpObserver);
+    tmpObserver.observe(feedItem, { childList: true, subtree: true });
   }
 
   private setupGarbageCollector(): void {
