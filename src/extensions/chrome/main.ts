@@ -1,5 +1,5 @@
 import { FeedObserver } from "../../app/FeedObserver";
-import { matchesText } from "../../app/matchesText";
+import { matchesAnyWholeWord } from "../../app/matchesAnyWholeWord";
 import { Popup } from "../../app/popup";
 
 const applyRedBorder = (node: Node) => {
@@ -28,8 +28,7 @@ chrome.runtime.onMessage.addListener((message: any) => {
 });
 
 function regenerateFeedObserver(filters: Array<string>) {
-  const matcher = new RegExp(`\\b(${filters.join('|')})\\b`, 'i');
-  const matchesAnyFilter = matchesText(matcher);
+  const matchesAnyFilter = matchesAnyWholeWord(filters);
   if (feedObserver) {
     feedObserver.cleanup();
   }
