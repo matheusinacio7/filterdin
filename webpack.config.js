@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 
 module.exports = {
@@ -21,4 +22,15 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    {
+      apply: (compiler) => {
+        compiler.hooks.afterCompile.tap('MyCutePlugin_compile', (params) => {
+          const outputPath = params.compiler.outputPath;
+          fs.cpSync(path.resolve(__dirname, 'src', 'static'), outputPath, { force: true, recursive: true });
+          fs.cpSync(path.resolve(__dirname, 'src', 'extensions', 'chrome', 'static'), outputPath, { force: true, recursive: true });
+        });
+      },
+    }
+  ]
 };
