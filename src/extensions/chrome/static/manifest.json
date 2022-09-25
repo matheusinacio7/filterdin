@@ -6,6 +6,15 @@
   "icons": {
     "48": "icons/border-48.png"
   },
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icons": {
+      "48": "icons/border-48.png"
+    }
+  },
   "content_scripts": [
     {
       "js": ["filterdin.js"],
