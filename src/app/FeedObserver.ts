@@ -1,5 +1,5 @@
-const FEED_CLASS = 'scaffold-finite-scroll__content';
-const FEED_ITEM_TEXT_CONTAINER_CLASS = 'update-components-text';
+export const FEED_CLASS = 'scaffold-finite-scroll__content';
+export const FEED_ITEM_TEXT_CONTAINER_CLASS = 'update-components-text';
 
 export class FeedObserver {
   static garbageCollectorInterval: ReturnType<typeof setInterval> | null = null;
@@ -18,6 +18,7 @@ export class FeedObserver {
 
   observe(): void {
     this.setupGarbageCollector;
+    console.log(document.body.outerHTML);
     let feedNode = document.querySelector(`.${FEED_CLASS}`);
     if (feedNode) {
       feedNode.childNodes.forEach(this.handleFeedItemNode.bind(this));
@@ -68,6 +69,7 @@ export class FeedObserver {
     }
 
     const textContainer = (feedItem as HTMLElement).querySelector(`.${FEED_ITEM_TEXT_CONTAINER_CLASS}`);
+    console.log(textContainer);
 
     if (textContainer && this.conditional(textContainer)) {
       this.callback(feedItem);
