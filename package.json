@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build:chrome": "webpack --env browser=chrome"
+    "build:chrome": "webpack --env browser=chrome",
+    "build:firefox": "webpack --env browser=firefox"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "@testing-library/dom": "^8.18.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@types/chrome": "0.0.197",
+    "@types/firefox-webext-browser": "^94.0.1",
     "@types/jest": "^29.0.3",
     "@types/jsdom": "^20.0.0",
     "babel-jest": "^29.0.3",

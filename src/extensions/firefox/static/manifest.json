@@ -6,6 +6,12 @@
   "icons": {
     "48": "icons/border-48.png"
   },
+  "browser_action": {
+    "default_icon": "icons/border-48.png",
+    "default_title": "FilterdIn",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["activeTab", "storage"],
   "content_scripts": [
     {
       "matches": ["*://*.linkedin.com/feed*"],
