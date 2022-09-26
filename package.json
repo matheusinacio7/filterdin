@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "build:chrome": "webpack --env browser=chrome"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "jest": "^29.0.3",
     "jest-environment-jsdom": "^29.0.3",
     "jsdom": "^20.0.0",
+    "semver": "^7.3.7",
     "ts-jest": "^29.0.2",
     "ts-loader": "^9.4.1",
     "ts-node": "^10.9.1",
