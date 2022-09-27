@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="2400"
+   height="800"
+   viewBox="0 0 635.00001 211.66667"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (1:1.2.1+202207142221+cd75a1ee6d)"
+   sodipodi:docname="filderdin-logotype-no-background.svg"
+   inkscape:export-filename="../../src/static/icons/filterdin-128.png"
+   inkscape:export-xdpi="15.36"
+   inkscape:export-ydpi="15.36"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.34458333"
+     inkscape:cx="1143.4099"
+     inkscape:cy="715.35671"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="1280"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;fill-opacity:1;stroke-width:0.66897"
+       id="rect491"
+       width="635"
+       height="211.66667"
+       x="-2.5431316e-06"
+       y="-2.5431316e-06" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.273795"
+       d="m 122.14386,156.15278 19.36931,-15.20047 -0.54698,7.22495 -18.4078,12.08987"
+       id="path354" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.273795"
+       d="m 123.16138,161.79449 17.97597,-13.02556 -1.46143,6.97027 -15.58754,8.79571"
+       id="path354-3"
+       sodipodi:nodetypes="cccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:88.3423px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:7.36184"
+       x="210.48709"
+       y="146.30244"
+       id="text437"
+       transform="scale(0.99001207,1.0100887)"><tspan
+         sodipodi:role="line"
+         id="tspan435"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:88.3423px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:7.36184"
+         x="210.48709"
+         y="146.30244">FilterdIn</tspan></text>
+    <path
+       id="path122"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.20178"
+       d="m 75.564274,77.805593 c 3.806382,11.443674 44.512186,23.798697 45.200256,51.568137 0.4871,19.65827 1.04159,25.47427 1.04159,25.47427 l 19.89538,-15.36184 c 0,0 0.27157,-1.88344 0.72226,-10.11243 1.51909,-27.73639 40.4313,-40.490988 45.20025,-51.568137 3.7543,-8.720325 -6.5069,-8.575349 -6.5069,-8.575349 h -48.6473 -1.75186 l -50.49273,0.0094 c -1.845967,0.0094 -7.306609,0.611892 -4.660946,8.565938 z"
+       sodipodi:nodetypes="ssccssccccss" />
+  </g>
+</svg>

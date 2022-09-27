@@ -4,7 +4,9 @@
   "version": "1.0",
   "description": "__MSG_extensionDescription__",
   "icons": {
-    "48": "icons/border-48.png"
+    "16": "icons/filterdin-16.png",
+    "48": "icons/filterdin-48.png",
+    "128": "icons/filterdin-128.png"
   },
   "permissions": [
     "storage"
@@ -12,7 +14,9 @@
   "action": {
     "default_popup": "popup.html",
     "default_icons": {
-      "48": "icons/border-48.png"
+      "16": "icons/filterdin-16.png",
+      "48": "icons/filterdin-48.png",
+      "128": "icons/filterdin-128.png"
     }
   },
   "default_locale": "en",

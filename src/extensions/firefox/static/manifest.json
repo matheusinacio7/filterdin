@@ -4,10 +4,12 @@
   "version": "1.0",
   "description": "__MSG_extensionDescription__",
   "icons": {
-    "48": "icons/border-48.png"
+    "16": "icons/filterdin-16.png",
+    "48": "icons/filterdin-48.png",
+    "128": "icons/filterdin-128.png"
   },
   "browser_action": {
-    "default_icon": "icons/border-48.png",
+    "default_icon": "icons/filterdin-48.png",
     "default_title": "FilterdIn",
     "default_popup": "popup.html"
   },
