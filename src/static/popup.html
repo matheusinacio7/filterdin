@@ -1,14 +1,22 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="popup.css">
+  </head>
   <body>
-    <h1 i18n="filteredWords">Termos filtrados</h1>
-    <ol id="filter-list"></ol>
-    <form id="add-filter-form">
-      <label for="filter-to-add">
-        <span i18n="addFilteredWord">Adicionar termo:  </span>
-        <input id="filter-to-add" type="text">
-      </label>
-      <button type="submit" i18n="addFilteredWordSubmit">Adicionar</button>
-    </form>
-    <script src="popup.js"></script>
+    <h1 class="title">FilterdIn</h1>
+    <section>
+      <h1 i18n="filteredWords">Palavras filtradas</h1>
+      <ol id="filter-list"></ol>
+      <form id="add-filter-form">
+        <label class="term-label" for="filter-to-add">
+          <span i18n="addFilteredWord">Adicionar palavra:</span>
+        </label>
+        <section>
+          <input id="filter-to-add" type="text" autofocus>
+          <button type="submit" i18n="addFilteredWordSubmit">Adicionar</button>
+        </section>
+      </form>
+    </section>
   </body>
+  <script src="popup.js"></script>
 </html>
