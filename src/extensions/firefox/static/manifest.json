@@ -14,10 +14,10 @@
     "default_popup": "popup.html"
   },
   "default_locale": "en",
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "tabs"],
   "content_scripts": [
     {
-      "matches": ["*://*.linkedin.com/feed*"],
+      "matches": ["*://*.linkedin.com/*"],
       "js": ["filterdin.js"]
     }
   ]

@@ -4,16 +4,14 @@ const popup = new Popup();
 
 popup.addEventListener(Popup.PopupEvent.FilterAdded, (addedFilter, filters) => {
   const message = { type: Popup.PopupEvent.FilterAdded, filters, addedFilter };
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id as number, message);
-  });
+  sendMessage(message);
+  syncFilters(filters);
 });
 
 popup.addEventListener(Popup.PopupEvent.FilterDeleted, (deletedFilter, filters) => {
   const message = { type: Popup.PopupEvent.FilterDeleted, filters, deletedFilter };
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id as number, message);
-  });
+  sendMessage(message);
+  syncFilters(filters);
 });
 
 chrome.storage.sync.get(['filters'], function({ filters }) {
@@ -21,13 +19,24 @@ chrome.storage.sync.get(['filters'], function({ filters }) {
     return;
   }
 
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id as number, { filters });
-  });
-
   const filtersArray = (filters as string).split(',');
+
+  sendMessage({ filters: filtersArray });
+
   popup.loadFilters(filtersArray);
 });
+
+function sendMessage(message: any) {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0].url?.includes('linkedin')) {
+      chrome.tabs.sendMessage(tabs[0].id as number, message);
+    }
+  });
+}
+
+function syncFilters(filters: Array<string>) {
+  chrome.storage.sync.set({ filters: filters.join(',') });
+}
 
 document.querySelectorAll('*[i18n]')
   .forEach((element) => {

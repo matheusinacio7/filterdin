@@ -9,7 +9,8 @@
     "128": "icons/filterdin-128.png"
   },
   "permissions": [
-    "storage"
+    "storage",
+    "tabs"
   ],
   "action": {
     "default_popup": "popup.html",
@@ -23,7 +24,7 @@
   "content_scripts": [
     {
       "js": ["filterdin.js"],
-      "matches": ["*://*.linkedin.com/feed/*"]
+      "matches": ["*://*.linkedin.com/*"]
     }
   ]
 }
