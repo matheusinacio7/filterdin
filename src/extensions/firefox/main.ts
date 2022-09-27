@@ -11,7 +11,7 @@ window.addEventListener('focus', () => {
 syncStorage();
 
 function syncStorage() {
-  browser.storage.local.get(['filters'])
+  browser.storage.sync.get(['filters'])
   .then(({ filters }) => {
     if (filters) {
       feedObserver.regenerateFeedObserver(filters.split(','));

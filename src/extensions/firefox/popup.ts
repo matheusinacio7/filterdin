@@ -14,7 +14,7 @@ popup.addEventListener(Popup.PopupEvent.FilterDeleted, (deletedFilter, filters) 
   syncFilters(filters);
 });
 
-browser.storage.local.get(['filters'])
+browser.storage.sync.get(['filters'])
   .then(({ filters }) => {
     if (!filters) {
       throw new Error('filters not found');
@@ -26,7 +26,7 @@ browser.storage.local.get(['filters'])
   });
 
 function syncFilters(filters: Array<string>) {
-  browser.storage.local.set({ filters: filters.join(',') });
+  browser.storage.sync.set({ filters: filters.join(',') });
 }
 
 function sendMessage(message: any) {
