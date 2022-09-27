@@ -1,0 +1,21 @@
+{
+  "filteredWords": {
+    "message": "Filtered words",
+    "description": ""
+  },
+
+  "addFilteredWord": {
+    "message": "Add word: ",
+    "description": ""
+  },
+
+  "addFilteredWordSubmit": {
+    "message": "Add",
+    "description": ""
+  },
+
+  "extensionDescription": {
+    "message": "Allows you to filter your LinkedIn feed based on text content",
+    "description": ""
+  }
+}

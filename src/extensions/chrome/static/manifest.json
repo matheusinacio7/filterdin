@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "FilterdIn",
   "version": "1.0",
-  "description": "Allows you to filter your LinkedIn feed based on text content",
+  "description": "__MSG_extensionDescription__",
   "icons": {
     "48": "icons/border-48.png"
   },
@@ -15,6 +15,7 @@
       "48": "icons/border-48.png"
     }
   },
+  "default_locale": "en",
   "content_scripts": [
     {
       "js": ["filterdin.js"],

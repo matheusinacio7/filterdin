@@ -28,3 +28,8 @@ chrome.storage.sync.get(['filters'], function({ filters }) {
   const filtersArray = (filters as string).split(',');
   popup.loadFilters(filtersArray);
 });
+
+document.querySelectorAll('*[i18n]')
+  .forEach((element) => {
+    element.childNodes[0].nodeValue = chrome.i18n.getMessage(element.getAttribute('i18n') as string);
+  });

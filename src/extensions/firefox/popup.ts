@@ -40,3 +40,8 @@ browser.storage.local.get(['filters'])
   .catch(() => {
     // handle error
   });
+
+document.querySelectorAll('*[i18n]')
+  .forEach((element) => {
+    element.childNodes[0].nodeValue = browser.i18n.getMessage(element.getAttribute('i18n') as string);
+  });

@@ -1,0 +1,21 @@
+{
+  "filteredWords": {
+    "message": "Palavras filtradas",
+    "description": ""
+  },
+
+  "addFilteredWord": {
+    "message": "Adicionar palavra: ",
+    "description": ""
+  },
+
+  "addFilteredWordSubmit": {
+    "message": "Adicionar",
+    "description": ""
+  },
+
+  "extensionDescription": {
+    "message": "Permite que você filtre seu feed do LinkedIn de acordo com o conteúdo",
+    "description": ""
+  }
+}
