@@ -15,7 +15,7 @@ https://user-images.githubusercontent.com/52154225/193325325-4297145e-89fb-437e-
 ## How can I install FilterdIn?
 Using the extension store for your browser:
 * Google Chrome: https://chrome.google.com/webstore/detail/filterdin/pflaopfhcpafedfabancdilljmomclnb
-* Mozilla Firefox: ttps://addons.mozilla.org/firefox/addon/filterdin/
+* Mozilla Firefox: https://addons.mozilla.org/firefox/addon/filterdin/
  
 ## Is it available for other browsers?
 Currently, no. Only for Chrome and Firefox.
